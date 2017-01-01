@@ -361,7 +361,10 @@
                         <li>ASAL: <?= $art->asal ?></li>
                         <li>USIA : <?= $art->usia ?> tahun</li>
                         <li>SUKU : <?= $art->suku ?></li>
-                        <li>Keterampilan: <?= $art->keterampilan ?></li>
+                        <li>Keterampilan: <?php if (!empty($art->keterampilan)) 
+                                                    foreach (json_decode($art->keterampilan) as $keterampilan) 
+                                                        echo $keterampilan . ', '; ?></li>
+                        <li>Pengalaman: <?= $art->pengalaman ?> tahun</li>
                     </ul>
                   </div>
                 <div align="center">

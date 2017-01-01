@@ -256,15 +256,43 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-3">
-                    <label  for="mobile">Pengalaman Bekerja ( dalam tahun) </label>
+                    <label  for="pengalaman">Pengalaman Bekerja ( dalam tahun) </label>
                     </div>
                     <div class="col-md-3">
-                        <input type="number" name="keterampilan" class="form-control">
+                        <input type="number" name="pengalaman" class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label  class="form-control">Tahun</label>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label  for="anak" class="pull-left">Tambah Keterampilan</label>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-danger" id="add-anak">+ Keterampilan</button>
+                    </div>
+                </div>
+                <div class="col-md-12"  id="dynamic-form">
+                    
+
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#add-anak').on('click', function() {
+                            $('#dynamic-form').append('<div class="form-group">' +
+                                    '<div class="col-md-3">' +
+                                        '<label  for="keterampilan" class="pull-left">Nama Keterampilan</label>' +
+                                    '</div>' +
+                                    '<div class="col-md-6">' +
+                                        '<input class="form-control" type="text" name="keterampilan[]" placeholder="Nama Keterampilan">' +
+                                    '</div>' +
+                                '</div>');
+
+                            return false;
+                        });
+                    });
+                </script>
                 <div class="form-group">
                     <div class="col-md-3">
                     <label  for="foto">Foto Profil </label>

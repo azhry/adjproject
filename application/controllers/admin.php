@@ -34,7 +34,8 @@ class Admin extends MY_Controller{
                 'agama'         => $this->POST('agama'),
                 'status'        => 'tidak bekerja',
                 'pendidikan'    => $this->POST('pendidikan'),
-                'keterampilan'  => $this->POST('keterampilan')
+                'pengalaman'    => $this->POST('pengalaman'),
+                'keterampilan'  => json_encode($this->POST('keterampilan'))
             );
 
             $this->art_model->insert($data);

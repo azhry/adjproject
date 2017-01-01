@@ -12,8 +12,6 @@ class Search_model extends CI_Model
 
 	}
 
-
-
 	private function sql_check()
 	{
 		if (isset($this->sql))
