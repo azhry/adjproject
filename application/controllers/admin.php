@@ -264,13 +264,45 @@ class Admin extends MY_Controller{
             exit;
         }
 
+        if ($this->input->post('edit'))
+        {
+            $edit_data = [
+                'nama'  => $this->input->post('nama'),
+                'usia'  => $this->input->post('usia'),
+                'suku'  => $this->input->post('suku'),
+                'jenis_kelamin'  => $this->input->post('jenis_kelamin'),
+                'asal'  => $this->input->post('asal'),
+                'gaji'  => $this->input->post('gaji'),
+                'agama'  => $this->input->post('agama'),
+                'status'  => $this->input->post('status'),
+                'pendidikan'  => $this->input->post('pendidikan'),
+                'keterampilan'  => json_encode($this->input->post('keterampilan')),
+                'pengalaman'  => $this->input->post('pengalaman'),
+            ];
+            $this->art_model->update($id_art, $edit_data);
+            $this->upload($id_art, 'foto');
+            redirect('admin/edit/' . $id_art);
+            exit;
+        }
+
         $art = $this->art_model->get_data_byId_art($id_art);
-        $data = array(
-            ''
-        );
+        $data = [
+            'id_art'        => $id_art,
+            'nama'          => $art->nama,
+            'usia'          => $art->usia,
+            'suku'          => $art->suku,
+            'jenis_kelamin' => $art->jenis_kelamin,
+            'asal'          => $art->asal,
+            'gaji'          => $art->gaji,
+            'agama'         => $art->agama,
+            'status'        => $art->status,
+            'pendidikan'    => $art->pendidikan,
+            'keterampilan'  => json_decode($art->keterampilan),
+            'pengalaman'    => $art->pengalaman
+        ];
 
         $this->load->view('page/admin/atas');
-        $this->load->view('page/admin/tambah');   
+        $this->load->view('page/admin/edit', $data);   
     }
 
     public function approve($id_art)

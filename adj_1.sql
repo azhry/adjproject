@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2017 at 08:40 AM
+-- Generation Time: Jan 10, 2017 at 10:26 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.5.28
 
@@ -65,12 +65,13 @@ CREATE TABLE IF NOT EXISTS `art` (
 --
 
 INSERT INTO `art` (`id_art`, `nama`, `usia`, `suku`, `jenis_kelamin`, `asal`, `gaji`, `agama`, `status`, `pendidikan`, `keterampilan`, `pengalaman`) VALUES
-(1, 'hahahah', '50', 'jawa', 'Laki-laki', 'any', '20000000', 'islam', 'tidak bekerja', 'tidak_sekolah', '', 0),
-(2, 'jsakdjkasdlkj', '50', 'jawa', 'Perempuan', 'any', '20000000', 'islam', 'bekerja', 'tidak_sekolah', '', 0),
-(3, 'ewwww', '50', 'jawa', 'Laki-laki', 'any', '20000000', 'islam', 'tidak bekerja', 'tidak sekolah', '', 0),
-(4, '1212', '50', 'jawa', 'Laki-laki', 'any', '20000000', 'islam', 'tidak bekerja', 'tidak sekolah', '', 0),
+(1, 'hahahahaaaaaa', '324', 'Lampung', 'Perempuan', 'semarang', '20000000324', 'Katolik', '', 'Sekolah Menengah Pertama', '["ngoding","dsfds","ewrewre"]', 2343),
+(2, 'jsakdjkasdlkj', '50', 'jawa', 'Perempuan', 'any', '20000000', 'islam', 'bekerja', 'tidak_sekolah', '["ngoding","\\"ngoding\\""]', 0),
+(3, 'ewwww', '50', 'jawa', 'Laki-laki', 'any', '20000000', 'islam', 'tidak bekerja', 'tidak sekolah', '["ngoding","\\"ngoding\\""]', 0),
+(4, '1212', '50', 'jawa', 'Laki-laki', 'any', '20000000', 'islam', 'tidak bekerja', 'tidak sekolah', '["ngoding","\\"ngoding\\""]', 0),
 (5, 'testingNAMA', '49', 'sunda', 'Perempuan', 'surabaya', '3750000', 'budha', 'tidak bekerja', 'sma', '["ngoding","\\"ngoding\\""]', 9),
-(6, 'test', '50', 'banten', 'Laki-laki', 'medan', '3000000', 'katolik', 'tidak bekerja', 'sd', '["asdas","asdsds","fdgfdgfd"]', 9);
+(6, 'test', '50', 'banten', 'Laki-laki', 'medan', '3000000', 'katolik', 'tidak bekerja', 'sd', '["asdas","asdsds","fdgfdgfd"]', 9),
+(7, 'hahahahaaaaaa', '502', 'NTT', 'Perempuan', 'banjarmasin', '2220000000', 'Budha', 'tidak bekerja', 'Sekolah Menengah Pertama', '["dsfdsf","sdfdsf","sdfdsf"]', 10);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,17 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `id_admin` int(11) NOT NULL,
   `chat` text NOT NULL,
   `pengirim` enum('admin','pengguna') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`id_chat`, `id_pengguna`, `id_admin`, `chat`, `pengirim`) VALUES
+(4, 4, 1, 'Haaay ganteng', 'pengguna'),
+(5, 4, 1, 'Hay jugaaa sayang', 'admin'),
+(6, 4, 1, 'gi ngpain?', 'pengguna'),
+(7, 4, 1, 'gy mencintai mhuu ', 'admin');
 
 -- --------------------------------------------------------
 
@@ -143,7 +154,14 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `waktu` datetime NOT NULL,
   `id_info` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`id_komentar`, `id_pengguna`, `id_konsumen`, `id_art`, `isi_komentar`, `waktu`, `id_info`, `status`) VALUES
+(4, 4, 4, 0, 'ksdfjskldfd', '2017-01-10 15:18:46', 12, 0);
 
 -- --------------------------------------------------------
 
@@ -162,14 +180,14 @@ CREATE TABLE IF NOT EXISTS `konsumen` (
   `jenis_kelamin` varchar(10) NOT NULL,
   `email` varchar(30) NOT NULL,
   `no_telp` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `konsumen`
 --
 
 INSERT INTO `konsumen` (`id_konsumen`, `username`, `pass`, `nama`, `alamat`, `anak`, `agama`, `jenis_kelamin`, `email`, `no_telp`) VALUES
-(2, 'az', '202cb962ac59075b964b07152d234b70', 'Azhary Ganteng', 'Griya Sejahtera', '[{"nama":"anak 1","usia":"22"},{"nama":"anak 2","usia":"11"}]', 'Islam', 'Laki-laki', 'azhary_arliansyah@outlook.com', '+6281996073896');
+(4, 'azhary', '985fabf8f96dc1c4c306341031569937', 'Azhary Arliansyah', 'Griya Sejahtera', '[{"nama":"Anak 1","usia":"100"},{"nama":"Anak 2","usia":"70"},{"nama":"Anak 3","usia":"50"}]', 'islam', 'laki-laki', 'arliansyah_azhary@yahoo.com', '081996073896');
 
 -- --------------------------------------------------------
 
@@ -206,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `order_art` (
   `mulai_kerja` datetime NOT NULL,
   `akhir_kerja` datetime NOT NULL,
   `order_date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -241,8 +259,8 @@ ALTER TABLE `art`
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`id_chat`),
-  ADD KEY `fk_id_pengguna_chat` (`id_pengguna`),
-  ADD KEY `fk_id_admin_chat` (`id_admin`);
+  ADD KEY `fk_id_admin_chat` (`id_admin`),
+  ADD KEY `fk_id_pengguna` (`id_pengguna`) USING BTREE;
 
 --
 -- Indexes for table `info`
@@ -311,7 +329,7 @@ ALTER TABLE `art`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_chat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `info`
 --
@@ -326,12 +344,12 @@ ALTER TABLE `kepala_yayasan`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id_komentar` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_komentar` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `laporan`
 --
@@ -341,7 +359,7 @@ ALTER TABLE `laporan`
 -- AUTO_INCREMENT for table `order_art`
 --
 ALTER TABLE `order_art`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
@@ -355,16 +373,14 @@ ALTER TABLE `pengguna`
 -- Constraints for table `chat`
 --
 ALTER TABLE `chat`
-  ADD CONSTRAINT `fk_id_admin_chat` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_pengguna_chat` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_id_admin_chat` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `komentar`
 --
 ALTER TABLE `komentar`
-  ADD CONSTRAINT `fk_id_art_komentar` FOREIGN KEY (`id_art`) REFERENCES `art` (`id_art`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_konsumen_komentar` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_pengguna_komentar` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_id_konsumen_komentar` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `laporan`

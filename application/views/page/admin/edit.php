@@ -14,7 +14,7 @@
         		if (isset($msg))
         			echo $msg;
         	?>
-        	 <?= form_open_multipart('admin/tambah' , array("class" => "form-horizontal")) ?>
+        	 <?= form_open_multipart('admin/edit/' . $id_art , array("class" => "form-horizontal")) ?>
                 <div class="form-group">
                     <div class="col-md-3">
                         <label for="nama">Nama <sup>*</sup></label>
@@ -115,7 +115,7 @@
                     <label  for="pengalaman">Pengalaman Bekerja ( dalam tahun) </label>
                     </div>
                     <div class="col-md-3">
-                        <input type="number" min="0" name="pengalaman" class="form-control">
+                        <input type="number" min="0" name="pengalaman" class="form-control" value="<?= $pengalaman ?>">
                     </div>
                     <div class="col-md-3">
                         <label  class="form-control">Tahun</label>
@@ -130,8 +130,16 @@
                     </div>
                 </div>
                 <div class="col-md-12"  id="dynamic-form">
-                    
-
+                    <?php foreach ($keterampilan as $row): ?>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <label  for="keterampilan" class="pull-left">Nama Keterampilan</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="keterampilan[]" placeholder="Nama Keterampilan" value="<?= $row ?>">
+                            </div>
+                        '</div>
+                    <?php endforeach; ?>
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function() {
@@ -161,7 +169,7 @@
                     <div align="center">
                         <input type="hidden" name="email_create" value="1">
                         <input type="hidden" name="is_new_customer" value="1">
-                        <input class="btn btn-large btn-primary" name="tambah" type="submit" value="Register">
+                        <input class="btn btn-large btn-primary" name="edit" type="submit" value="Edit">
                     </div>
                 </div>
         	<!-- </form> -->

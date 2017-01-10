@@ -51,7 +51,7 @@
                     $("#formKomentar").prepend('Komentar anda menunggu persetujuan admin agar dapat tampil');
                 },
                 error   : function(e) {
-                    console.log(e);
+                    console.log(e.responseText);
                 }
             });
             return false;
