@@ -62,6 +62,7 @@ class Home extends MY_Controller{
     public function tips()
     {
         $this->load->model('info_model');
+        $this->load->model('komentar_model');
         if ($this->input->post('btn_cari'))
         {
             $cari = $this->input->post('cari');
@@ -71,6 +72,7 @@ class Home extends MY_Controller{
         }
         else{
             $data['artikel'] = $this->info_model->get_all_descending();
+            $data['top']     = $this->komentar_model->get_top();
         }
         $this->load->view('page/component/header');
         $this->load->view('page/home/tips', $data);

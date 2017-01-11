@@ -1,38 +1,40 @@
 <div class="container">
-	<div class="col-md-12">
-		<h3 class="title">Tips / Artikel</h3>
-	</div>
+	<h3 class="title">Tips / Artikel</h3>
 	<div class="row">
-		<?= form_open('home/tips') ?>
-
-			<div class="col-md-3 form-group">
-				<input type="text" name="cari" class="form-control">
+	    <div class="col-sm-9">
+	    <?php foreach ($artikel as $post) : ?>
+	    	<div class="media">
+			  <div class="media-left media-middle">
+			    <img src="<?= base_url('foto/'.$post->gambar.'.png') ?>" class="media-object" style="width:250px">
+			  </div>
+			  <div class="media-body" style="text-align: left;!important">
+			    <h4 class="media-heading"><?= $post->judul ?> <small><i>Posted on <?= $post->waktu ?></i></small></h4>
+			    <p><?= substr($post->isi,5,(strlen($post->isi)/3)) ?></p>
+			    <br>
+			    <p><br><a class="pull-right" href="<?= base_url('home/detail_tips/'.$post->id_info) ?>"> .... Selengkapnya</a></p>
+			  </div>
 			</div>
-			<div class="col-md-1 form-group">
-				<input type="submit" name="btn_cari" value="Cari" class="btn btn-primary form-control">
-			</div>
-			<?= form_close() ?>
-	</div>
-	<div class="row">
-		<div class="col-md-8 well">
-			<?php foreach ($artikel as $post): ?>
-			<div>
-				<img src="<?= base_url('foto/'.$post->gambar.'.png') ?>" class="col-md-3">
-		        <h2 align="left" class="title"><?= $post->judul ?> <small class="pull-right"><?= $post->waktu ?></small></h2>
-				<p class="pull-left">
-					<?= substr($post->isi, 0,300)  ?>
-					<br><a class="pull-right" href="<?= base_url('home/detail_tips/'.$post->id_info) ?>"> .... Selengkapnya</a>
-				</p>
 			<hr class="soften"/>
-			</div>
 		<?php endforeach; ?>
+	    </div>
+		<div class="col-sm-3">
+			<div class="row">
+				<?= form_open('home/tips') ?>
+					<div class="col-md-8 form-group">
+						<input type="text" name="cari" class="form-control">
+					</div>
+					<div class="col-md-4 form-group">
+						<input type="submit" name="btn_cari" value="Cari" class="btn btn-primary form-control">
+					</div>
+				<?= form_close() ?>
+			</div>
+			<hr class="soften"/>
+			<h3 class="title"><u>Populer Post</u></h3>
+				<ul class="list-group">
+						<?php foreach ($top as $data) : ?>
+				  			<li class="list-group-item"><?= $this->info_model->get_data_byId_info($data->id_info)->judul ?></li>
+				  		<?php endforeach; ?>
+				</ul>
 		</div>
-	<div class="col-md-4" align="left">
-		<h3 class="title"><u>Populer Post</u></h3>
-			<ul class="list-group">
-			  <li class="list-group-item">First item</li>
-			  <li class="list-group-item">Second item</li>
-			  <li class="list-group-item">Third item</li>
-			</ul>
 	</div>
 </div>

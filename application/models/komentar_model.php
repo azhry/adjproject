@@ -21,6 +21,8 @@ class Komentar_model extends CI_Model{
 		return $query->row();
 	}
 
+
+
 	function get_data_byConditional($condition){
 		$this->db->where($condition);
 		$query = $this->db->get($this->table);
@@ -51,6 +53,11 @@ class Komentar_model extends CI_Model{
 			$id_komentar = $row->id_komentar;
 		}
 		return $id_komentar;
+	}
+
+	function get_top(){
+		$data = $this->db->query('SELECT * FROM komentar GROUP BY id_info LIMIT 5');
+		return $data->result();
 	}
 
 	function insert($data){

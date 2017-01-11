@@ -43,7 +43,6 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class=""><a href="<?= base_url('admin') ?>" class="brand">Portal Admin</a></li>
-				<li><a href="<?= base_url('home') ?>">Home</a></li>
 				<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Daftar Baby Syster <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">

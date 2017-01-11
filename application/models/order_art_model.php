@@ -27,6 +27,14 @@ class Order_art_model extends CI_Model
 		return $query->result();
 	}
 
+	public function get_row($cond = [])
+	{
+		if (count($cond) > 0)
+			$this->db->where($cond);
+		$query = $this->db->get($this->table);
+		return $query->row();
+	}
+
 	public function insert($data)
 	{
 		return $this->db->insert($this->table, $data);

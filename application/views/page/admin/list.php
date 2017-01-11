@@ -1,7 +1,7 @@
 <h3 class="title"><span>Daftar Baby Sitter Yang Bekerja</span></h3>
 
 <div class="container">
-	<table class="table table-bordered table-hover" style="width:100%;">
+	<table class="table table-bordered table-hover" style="width:100%;" id="table_id">
 		<tr>
 			<th>No</th>
 			<th>Nama Art</th>
@@ -18,18 +18,24 @@
 			<td>
 				<?php  
 					$query = $this->db->query("SELECT mulai_kerja, akhir_kerja, id_konsumen FROM order_art WHERE id_art=". $row->id_art);
-					echo $query->row()->mulai_kerja;
+					if ($query->num_rows() > 0)
+						echo $query->row()->mulai_kerja;
 				?>
 			</td>
 			<td>
 				<?php  
-					echo $query->row()->akhir_kerja;
+					if ($query->num_rows() > 0)
+						echo $query->row()->akhir_kerja;
 				?>
 			</td>
 			<td>
-				<?php  
-					$query = $this->db->query("SELECT nama FROM konsumen WHERE id_konsumen=".$query->row()->id_konsumen);
-					echo $query->row()->nama;
+				<?php
+					if ($query->num_rows() > 0)
+					{
+						$query = $this->db->query("SELECT nama FROM konsumen WHERE id_konsumen=".$query->row()->id_konsumen);
+						if ($query->num_rows() > 0)
+							echo $query->row()->nama;
+					}  
 				?>
 			</td>
 			<td>

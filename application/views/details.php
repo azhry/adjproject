@@ -1,6 +1,7 @@
 ﻿<!-- ======================================================================================================================== -->
 <section id="mainBody">
-<h3 class="title" align="center"><span>DETAILS</span></h3>
+<h2 class="title" align="center"><?= $art->nama ?></h2>
+
 <div class="container">
     <div class="row">  
             <div class="col-md-3 well">
@@ -350,37 +351,77 @@
                     </div>
                 </div>
             </div>                     
-            <div class="col-md-3 well">
-            	<h2> <?= $art->nama ?> </h2>
-                  <div>
-                    <ul>
-                        <li>Nama: <?= $art->nama ?></li>
-                        <li>Jenis Kelamin: <?= $art->jenis_kelamin ?></li>
-                        <li>Agama: <?= $art->agama ?></li>
-                        <li>Status: <?= $art->status ?></li>
-                        <li>ASAL: <?= $art->asal ?></li>
-                        <li>USIA : <?= $art->usia ?> tahun</li>
-                        <li>SUKU : <?= $art->suku ?></li>
-                        <li>Keterampilan: <?php if (!empty($art->keterampilan)) 
-                                                    foreach (json_decode($art->keterampilan) as $keterampilan) 
-                                                        echo $keterampilan . ', '; ?></li>
-                        <li>Pengalaman: <?= $art->pengalaman ?> tahun</li>
-                    </ul>
-                  </div>
-                <div align="center">
-                    <h3>Gaji Perbulan<br>RP. <?= $art->gaji ?> </h3>
+            <div class="col-md-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Detail
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover" style="width: 100%;!important">
+                            <tbody>
+                                <tr>
+                                    <td align="left">Nama</td>
+                                    <td><?= $art->nama ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Jenis Kelamin</td>
+                                    <td><?= $art->jenis_kelamin ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Agama</td>
+                                    <td><?= $art->agama ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Status</td>
+                                    <td><?= $art->status ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Asal</td>
+                                    <td><?= $art->asal ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Usia</td>
+                                    <td><?= $art->usia ?> Tahun</td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Suku</td>
+                                    <td><?= $art->suku ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Keterampilan</td>
+                                    <td><?php 
+                                        if (!empty($art->keterampilan)) 
+                                            foreach (json_decode($art->keterampilan) as $keterampilan) 
+                                                echo $keterampilan . ', '; 
+                                        else echo " - ";
+                                        ?></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">Pengalaman</td>
+                                    <td><?= $art->pengalaman ?> tahun</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Gaji Bulanan</td>    
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><h4>Rp. <?= $art->gaji ?></h4></td>    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="btn btn-large btn-warning" href="<?= base_url('profil/checkout/'.$art->id_art) ?>"> PESAN SEKARANG </a>
+                    </div>
                 </div>
-                
-                <p><i class="icon-star"></i> <i class="fa-star"></i> <i class="fa-star"></i> <i class="icon-star-empty"></i><br></p>
-                  <br><a class="btn btn-large btn-warning" href="<?= base_url('profil/checkout/'.$art->id_art) ?>"> PESAN SEKARANG </a>
-             </div>
+            </div>
     </div>
     <div class="row">
         <div class="col-md-12" align="center">
             <h3><strong>SHIPPING INFORMATIONS</strong></h3>
             <div class="">
-                    <p>Setelah melakukan pemesanan akan di laukana bl bl bla</p> 
-                </div>
+                    <p>Setelah melakukan pemesanan akan di lakukan pembayaran</p> 
+            </div>
         </div>
     </div>
 </div>

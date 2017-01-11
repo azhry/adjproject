@@ -71,7 +71,7 @@ class Kepala extends MY_Controller{
             $pdfFilePath = "laporan.pdf";
             $this->load->library('m_pdf');
             $this->m_pdf->pdf->WriteHTML($html);
-            $this->m_pdf->pdf->Output($pdfFilePath, "D");
+            $this->m_pdf->pdf->Output($pdfFilePath, "I");
         }
         else
         {

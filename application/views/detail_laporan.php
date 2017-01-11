@@ -10,6 +10,7 @@
 			<?php endif; ?>
 		</div>
 	</div>
+	<br>
 	<div class="col-md-12">
 		<table class="table table-bordered table-hover" style="width:100%;" id="table_id">
 			<thead>
@@ -41,45 +42,45 @@
 							$data['durasi'] 		= $mulai_kerja->diff($akhir_kerja);
 							$data['durasi']			= $data['durasi']->format('%a hari');
 
-						}
+							$art = $this->art_model->get(['id_art' => $data['id_art']]);
+							foreach ($art as $a)
+							{
+								$data['nama_art'] 	= $a->nama;
+								$data['gaji']		= $a->gaji;
+							}
 
-						$art = $this->art_model->get(['id_art' => $data['id_art']]);
-						foreach ($art as $a)
-						{
-							$data['nama_art'] 	= $a->nama;
-							$data['gaji']		= $a->gaji;
-						}
-
-						$konsumen = $this->konsumen_model->get(['id_konsumen' => $data['id_konsumen']]);
-						foreach ($konsumen as $ksn)
-						{
-							$data['nama_konsumen'] 	= $ksn->nama;
-							$data['alamat']			= $ksn->alamat;
-							$data['no_telp']		= $ksn->no_telp;
-							$data['anak']			= json_decode($ksn->anak);
+							$konsumen = $this->konsumen_model->get(['id_konsumen' => $data['id_konsumen']]);
+							foreach ($konsumen as $ksn)
+							{
+								$data['nama_konsumen'] 	= $ksn->nama;
+								$data['alamat']			= $ksn->alamat;
+								$data['no_telp']		= $ksn->no_telp;
+								$data['anak']			= json_decode($ksn->anak);
+							} ?>
+							<tr>
+								<td><?= ++$i ?></td>
+								<td><?= $data['nama_konsumen'] ?></td>
+								<td><?= $data['alamat'] ?></td>
+								<td><?= $data['no_telp'] ?></td>
+								<td><?= $data['nama_art'] ?></td>
+								<td><?= $data['durasi'] ?></td>
+								<td>
+									<ul>
+										<?php foreach ($data['anak'] as $anak): ?>
+											<li><?= $anak->nama ?> <?= $anak->usia ?>thn</li>
+										<?php endforeach; ?>
+									</ul>
+								</td>
+								<td><?= $data['gaji'] ?></td>
+								<?php if($this->session->userdata('pengguna')=="admin") : ?>
+									<td>
+									<a href="<?= base_url('admin/hapus_laporan/'.$row->id_laporan) ?>" class="btn btn-danger">Hapus</a>
+								</td>
+								<?php endif; ?>
+							</tr>
+						<?php
 						}
 					?>
-					<tr>
-						<td><?= ++$i ?></td>
-						<td><?= $data['nama_konsumen'] ?></td>
-						<td><?= $data['alamat'] ?></td>
-						<td><?= $data['no_telp'] ?></td>
-						<td><?= $data['nama_art'] ?></td>
-						<td><?= $data['durasi'] ?></td>
-						<td>
-							<ul>
-								<?php foreach ($data['anak'] as $anak): ?>
-									<li><?= $anak->nama ?> <?= $anak->usia ?>thn</li>
-								<?php endforeach; ?>
-							</ul>
-						</td>
-						<td><?= $data['gaji'] ?></td>
-						<?php if($this->session->userdata('pengguna')=="admin") : ?>
-							<td>
-							<a href="<?= base_url('admin/hapus_laporan/'.$row->id_laporan) ?>" class="btn btn-danger">Hapus</a>
-						</td>
-					<?php endif; ?>
-					</tr>
 				<?php endforeach; ?>
 			</tbody>
 		</table>

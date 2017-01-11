@@ -11,19 +11,22 @@
     ?>
     <div class="col-md-12">
 		<?= form_open('admin/art') ?>
-			<div class="col-md-3 form-group">
+			<!-- <div class="col-md-3 form-group">
 				<input type="text" name="cari" class="form-control">
 			</div>
 			<div class="col-md-1 form-group">
 				<input type="submit" name="btn_cari" value="Cari" class="btn btn-primary form-control">
-			</div>
+			</div> -->
 			<?= form_close() ?>
 			<?php if ($this->session->userdata('pengguna') == "admin"): ?>
-			<div class="col-md-8">
+			
 				<a href="<?= base_url('admin/tambah') ?>" class="btn btn-danger pull-right">Tambah Baby Sister +</a><br>
-			</div>
+			
 		<?php endif; ?>
     </div>
+    <br>
+    <br>
+    <br>
     <div class="col-md-12">
 		<!-- <div class="row">
 			<?php foreach ($art as $row): ?>
@@ -43,7 +46,7 @@
 			</div>	
 			<?php endforeach; ?> -->
 			
-			<table class="table table-bordered table-hover" style="width:100%;">
+			<table class="table table-bordered table-hover" style="width:100%;" id="table_id">
 				<thead>
 					<tr>
 						<th>Foto</th>

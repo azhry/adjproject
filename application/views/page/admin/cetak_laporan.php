@@ -1,7 +1,7 @@
 <h3 class="title"><span>Data Laporan Baby Sitter</span></h3>
 
 <div class="container">
-	<table class="table table-bordered">
+	<table class="table table-bordered" style="width: 100%">
 		<tr>
 			<td colspan="5" align="right"><i><?php echo $mulai; ?> sampai <?php echo $akhir; ?></i></td>
 		</tr>

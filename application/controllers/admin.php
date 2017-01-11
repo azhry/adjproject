@@ -19,6 +19,7 @@ class Admin extends MY_Controller{
     {
         $this->load->view('page/admin/atas');
         $this->load->view('page/admin/index');
+        $this->load->view('page/admin/bawah');
     }
      public function tambah()
     {
@@ -42,7 +43,7 @@ class Admin extends MY_Controller{
             $this->upload($this->db->insert_id(), 'foto');
 
             $this->flashmsg('Registrasi berhasil!', 'success');
-            redirect('admin/tambah');
+            redirect('admin/art');
         }
 
         $this->load->view('page/admin/atas');
@@ -79,7 +80,7 @@ class Admin extends MY_Controller{
             $this->load->model('chat_model');
             $this->chat_model->insert($data);
 
-            echo '<div class="col-md-3 pull-right well">
+            echo '<div class="col-md-4 pull-right well">
                 '.$data['chat'].'
             </div>';
         //}
@@ -132,7 +133,8 @@ class Admin extends MY_Controller{
         );
 
         $this->load->view('page/admin/atas');
-        $this->load->view('page/admin/list', $data);  
+        $this->load->view('page/admin/list', $data);
+        $this->load->view('page/admin/bawah');  
     }
     public function art()
     {
@@ -153,6 +155,7 @@ class Admin extends MY_Controller{
         }
         $this->load->view('page/admin/atas');
         $this->load->view('list', $data);  
+        $this->load->view('page/admin/bawah');
     }
     public function detail_laporan()
     {
@@ -281,7 +284,7 @@ class Admin extends MY_Controller{
             ];
             $this->art_model->update($id_art, $edit_data);
             $this->upload($id_art, 'foto');
-            redirect('admin/edit/' . $id_art);
+            redirect('admin/art');
             exit;
         }
 
@@ -397,6 +400,7 @@ class Admin extends MY_Controller{
         
         $this->load->view('page/admin/atas');
         $this->load->view('page/admin/list_artikel', $data);
+        $this->load->view('page/admin/bawah');  
     }
 
     public function view_artikel($id_artikel)
@@ -517,7 +521,8 @@ class Admin extends MY_Controller{
         }
 
         $this->load->view('page/admin/atas');
-        $this->load->view('page/admin/list_customer', $data);   
+        $this->load->view('page/admin/list_customer', $data);  
+        $this->load->view('page/admin/bawah'); 
     }
     public function detail_konsumen()
     {
@@ -529,6 +534,13 @@ class Admin extends MY_Controller{
         );
         $this->load->view('page/admin/atas');
         $this->load->view('page/admin/detail_kon',$data); 
+    }
+    public function hapus_kon()
+    {
+        $id_konsumen = $this->uri->segment(3);
+        $this->load->model('konsumen_model');
+        $this->konsumen_model->delete($id_konsumen);
+        redirect('admin/list_konsumen');
     }
 }
 ?>

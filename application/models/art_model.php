@@ -28,6 +28,7 @@ class Art_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->where('keterampilan >', '5');
 		$this->db->order_by('keterampilan', 'DESC');
+		$this->db->limit(4);
 		$query = $this->db->get($this->table);
 		return $query->result();
 	}
