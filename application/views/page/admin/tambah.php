@@ -4,17 +4,17 @@
 <div class="container">
 <h3 class="title"><span>Tambah Asisten Rumah Tangga</span></h3>
     <ul class="breadcrumb">
-		<li><a href="#">Home</a> <span class="divider">/</span></li>
-		<li class="active">Tambah</li>
+        <li><a href="#">Home</a> <span class="divider">/</span></li>
+        <li class="active">Tambah</li>
     </ul>
-	<div class="row">
-		<div class="col-md-9 well">
-        	<?php 
-        		$msg = $this->session->flashdata('msg');
-        		if (isset($msg))
-        			echo $msg;
-        	?>
-        	 <?= form_open_multipart('admin/tambah' , array("class" => "form-horizontal")) ?>
+    <div class="row">
+        <div class="col-md-9 well">
+            <?php 
+                $msg = $this->session->flashdata('msg');
+                if (isset($msg))
+                    echo $msg;
+            ?>
+             <?= form_open_multipart('admin/tambah' , array("class" => "form-horizontal")) ?>
                 <div class="form-group">
                     <div class="col-md-3">
                         <label for="nama">Nama <sup>*</sup></label>
@@ -308,10 +308,10 @@
                         <input class="btn btn-large btn-primary" name="tambah" type="submit" value="Register">
                     </div>
                 </div>
-        	<!-- </form> -->
-        	<?= form_close() ?>
+            <!-- </form> -->
+            <?= form_close() ?>
         </div>
-	</div>
+    </div>
 </div>
   </body>
 </html>

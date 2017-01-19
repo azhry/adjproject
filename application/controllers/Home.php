@@ -13,9 +13,9 @@ class Home extends MY_Controller{
     }
     
     public function index()
-    {
+    {   
         $data ['content'] = 'page/home/index';
-        $data ['art'] = $this->art_model->get_all();
+        $data ['art'] = $this->art_model->limit();
         $data ['art_unggulan'] = $this->art_model->get_limit();
         $data ['artikel'] = $this->info_model->get_limit();
         $this->load->view('layout',$data);

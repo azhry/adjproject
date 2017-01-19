@@ -19,7 +19,6 @@ class Admin extends MY_Controller{
     {
         $this->load->view('page/admin/atas');
         $this->load->view('page/admin/index');
-        $this->load->view('page/admin/bawah');
     }
      public function tambah()
     {
@@ -43,7 +42,7 @@ class Admin extends MY_Controller{
             $this->upload($this->db->insert_id(), 'foto');
 
             $this->flashmsg('Registrasi berhasil!', 'success');
-            redirect('admin/art');
+            redirect('admin/tambah');
         }
 
         $this->load->view('page/admin/atas');
@@ -133,8 +132,7 @@ class Admin extends MY_Controller{
         );
 
         $this->load->view('page/admin/atas');
-        $this->load->view('page/admin/list', $data);
-        $this->load->view('page/admin/bawah');  
+        $this->load->view('page/admin/list', $data);  
     }
     public function art()
     {
@@ -155,7 +153,6 @@ class Admin extends MY_Controller{
         }
         $this->load->view('page/admin/atas');
         $this->load->view('list', $data);  
-        $this->load->view('page/admin/bawah');
     }
     public function detail_laporan()
     {
@@ -308,17 +305,33 @@ class Admin extends MY_Controller{
         $this->load->view('page/admin/edit', $data);   
     }
 
-    public function approve($id_art)
+    public function approve()
     {
-        if (!isset($id_art))
-        {
-            redirect('admin/art');
+        $this->load->model('laporan_model');
+        $this->load->model('order_art_model');
+        if ($this->input->POST('kirim')) {
+            # code...
+            $id_art = $this->input->POST('id_art');
+            $mulai_kerja = $this->input->POST('mulai_kerja');
+            $akhir_kerja = $this->input->POST('akhir_kerja');
+            $art = $this->art_model->update($id_art, array(
+            'status'    => 'bekerja'
+            ));
+            $laporan = array(   
+                                'id_art'      => $id_art,
+                                'mulai_kerja' => $mulai_kerja,
+                                'akhir_kerja' => $akhir_kerja ,
+                                'nama_art'      => $this->art_model->get_data_byId_art($id_art)->nama,
+                                'waktu_laporan' => date("Y-m-d")
+                                );
+            $this->laporan_model->insert($laporan);
+
+            $order = array(     'mulai_kerja' => $mulai_kerja,
+                                'akhir_kerja' => $akhir_kerja );
+            $this->order_art_model->update_order($id_art,$order);
+            redirect ('admin/art');
             exit;
         }
-
-        $art = $this->art_model->update($id_art, array(
-            'status'    => 'bekerja'
-        ));
 
         redirect('admin/art');
         exit;
@@ -400,7 +413,6 @@ class Admin extends MY_Controller{
         
         $this->load->view('page/admin/atas');
         $this->load->view('page/admin/list_artikel', $data);
-        $this->load->view('page/admin/bawah');  
     }
 
     public function view_artikel($id_artikel)
@@ -521,8 +533,7 @@ class Admin extends MY_Controller{
         }
 
         $this->load->view('page/admin/atas');
-        $this->load->view('page/admin/list_customer', $data);  
-        $this->load->view('page/admin/bawah'); 
+        $this->load->view('page/admin/list_customer', $data);   
     }
     public function detail_konsumen()
     {
@@ -534,13 +545,6 @@ class Admin extends MY_Controller{
         );
         $this->load->view('page/admin/atas');
         $this->load->view('page/admin/detail_kon',$data); 
-    }
-    public function hapus_kon()
-    {
-        $id_konsumen = $this->uri->segment(3);
-        $this->load->model('konsumen_model');
-        $this->konsumen_model->delete($id_konsumen);
-        redirect('admin/list_konsumen');
     }
 }
 ?>

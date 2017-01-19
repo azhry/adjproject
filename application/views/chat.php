@@ -41,7 +41,7 @@
 					$("#chat").val('');
 				},
 				error: function(e) {
-					console.log(e);
+					console.log(e.responseText);
 				}
 			});
 

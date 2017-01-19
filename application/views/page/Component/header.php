@@ -31,7 +31,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a href="<?= base_url('home') ?>" class="navbar-brand"><img class="img img-responsive" src="<?= base_url('img/logo_1.png') ?>" alt="" width="40px" height="40px"></a>
+	      <a href="<?= base_url('home') ?>" class="navbar-brand"><img class="img img-responsive" src="<?= base_url('img/logo.png') ?>" alt="" width="40px" height="40px"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">

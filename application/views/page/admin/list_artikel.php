@@ -1,7 +1,7 @@
 <h3 class="title"><span>Daftar Artikel</span></h3>
 
 <div class="container">
-	<!-- <div class="row">
+	<div class="row">
 		<?= form_open('admin/artikel') ?>
 			<div class="col-md-3 form-group">
 				<input type="text" name="cari" class="form-control">
@@ -10,13 +10,12 @@
 				<input type="submit" name="btn_cari" value="Cari" class="btn btn-primary form-control">
 			</div>
 			<?= form_close() ?>
-	</div> -->
+	</div>
 	<?php  
 		$msg = $this->session->flashdata('msg');
 		if (isset($msg)) echo $msg;
 	?>
-	<table class="table table-bordered table-hover" style="width:100%;" id="table_id">
-		<thead>
+	<table class="table table-bordered table-hover" style="width:100%;">
 		<tr>
 			<th>No</th>
 			<th>Foto Artikel</th>
@@ -25,8 +24,6 @@
 			<th>Tanggal Post</th>
 			<th>Action</th>
 		</tr>
-		</thead>
-		<tbody>
 		<?php $i = 0; foreach ($artikel as $row): ?>
 			<tr>
 				<td><?= ++$i ?></td>
@@ -42,7 +39,6 @@
 				<td><a href="<?= base_url('admin/edit_artikel/'.$row->id_info) ?>" class="btn btn-primary">Edit</a> | <a href="<?= base_url('admin/hapus_artikel/'.$row->id_info) ?>" class="btn btn-danger">Hapus</a> | <a href="<?= base_url('admin/view_artikel/'.$row->id_info) ?>" class="btn btn-success">View</a></td>
 			</tr>
 		<?php endforeach; ?>
-		</tbody>
 	</table>
 	<div class="footer">
 		<div class="navbar">

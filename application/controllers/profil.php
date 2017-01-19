@@ -21,8 +21,10 @@ class Profil extends MY_Controller{
     public function index()
     {        
         $konsumen = $this->konsumen_model->get_data_byId_konsumen($this->userid);
-
+        $this->load->model('laporan_model');
+        
         $data = array(
+            'username'      => $this->username,
             'nama'          => $konsumen->nama,
             'alamat'        => $konsumen->alamat,
             'agama'         => $konsumen->agama,
@@ -51,7 +53,7 @@ class Profil extends MY_Controller{
     {
         $this->load->model('chat_model');
         $data = array(
-            'chats'  => $this->chat_model->get()
+            'chats'  => $this->chat_model->get(['id_pengguna' => $this->userid])
         );
 
         foreach ($data['chats'] as $chat)
@@ -166,12 +168,7 @@ class Profil extends MY_Controller{
 
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('laporan_model');
-        $laporan = array(
-            'id_art'        => $art->id_art,
-            'nama_art'      => $art->nama,
-            'waktu_laporan' => date("Y-m-d")
-        );
-        $this->laporan_model->insert($laporan);
+
         $this->load->model('order_art_model');
 
         $order_data = array(

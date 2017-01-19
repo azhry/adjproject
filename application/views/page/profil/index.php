@@ -14,7 +14,12 @@
 	</div>
 
 	 	<h3 align="center">Your personal information</h3>
-	 	<table class="table table-bordered table-hover" style="width:100%;text-align:left;">
+	 	<div class="row">
+	 		<div class="col-md-3">
+	 			<img src="<?=base_url('foto/'.$username.'.png') ?>" class="img img-responsive">
+	 		</div>
+	 		<div class="col-md-9">
+	 			<table class="table table-bordered table-hover" style="width:100%;text-align:left;">
 	 		<tr>
 	 			<td>Nama</td>
 	 			<td><?= $nama ?></td>
@@ -40,6 +45,8 @@
 	 			<td><?= $no_telp ?></td>
 	 		</tr>
 	 	</table>
+	 		</div>
+	 	</div>
 	 	<div class="control-group">
 			<div class="controls">
 				<a href="<?= base_url('profil/edit') ?>" class="btn btn-large btn-primary" > Edit Profil </a>

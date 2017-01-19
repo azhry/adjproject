@@ -32,7 +32,7 @@
 			<h3 class="title"><u>Populer Post</u></h3>
 				<ul class="list-group">
 						<?php foreach ($top as $data) : ?>
-				  			<li class="list-group-item"><?= $this->info_model->get_data_byId_info($data->id_info)->judul ?></li>
+				  			<li class="list-group-item"><a href="<?= base_url('home/detail_tips/'.$data->id_info) ?>"><?= $this->info_model->get_data_byId_info($data->id_info)->judul ?></a></li>
 				  		<?php endforeach; ?>
 				</ul>
 		</div>

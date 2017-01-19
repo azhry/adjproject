@@ -27,17 +27,22 @@ class Order_art_model extends CI_Model
 		return $query->result();
 	}
 
-	public function get_row($cond = [])
+	public function get_con($cond)
 	{
-		if (count($cond) > 0)
-			$this->db->where($cond);
+		$this->db->where($this->pk,$cond);
 		$query = $this->db->get($this->table);
-		return $query->row();
+		return $query->result();
 	}
 
 	public function insert($data)
 	{
 		return $this->db->insert($this->table, $data);
+	}
+
+	public function update_order($cond, $data)
+	{
+		$this->db->where('id_art',$cond);
+		return $this->db->update($this->table, $data);	
 	}
 
 	public function update($key, $data)

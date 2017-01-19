@@ -17,10 +17,26 @@ class Kepala extends MY_Controller{
     {
         $this->load->model('laporan_model');
          $data = array(
-                'laporan'   =>  $this->laporan_model->get_all()
+                'laporan'   =>  $this->laporan_model->get_all(),
+                'grafik'    => $this->laporan_model->grafik()
             );
         $this->load->view('page/kepala/atas');
         $this->load->view('page/kepala/index' ,$data);
+    }
+
+    public function hapus_laporan($id_laporan)
+    {
+        if (!isset($id_laporan))
+        {
+            redirect('kepala/detail_laporan');
+            exit;
+        }
+
+        $this->load->model('laporan_model');
+        $this->laporan_model->delete($id_laporan);
+        $this->flashmsg('Anda berhasil menghapus laporan', 'success');
+        redirect('kepala/detail_laporan');
+        exit;
     }
 
     public function detail_laporan()
@@ -37,8 +53,8 @@ class Kepala extends MY_Controller{
             );
         }
         else {
-	        $data['laporan'] = $this->laporan_model->get_all();
-	    }
+            $data['laporan'] = $this->laporan_model->get_all();
+        }
         $this->load->view('page/kepala/atas');
         $this->load->view('detail_laporan', $data);
     }

@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-3">
-			<img src="<?= base_url('foto/artikel_'.$artikel->id_info.'.png') ?>"  width="100%" heigth="100%"/></a>
+			<img src="<?= base_url('foto/'.$artikel->gambar.'.png') ?>"  width="100%" heigth="100%"/></a>
 		</div>
 		<div class="col-md-9" align="left">
 			<?= $artikel->isi ?>
@@ -51,7 +51,7 @@
                     $("#formKomentar").prepend('Komentar anda menunggu persetujuan admin agar dapat tampil');
                 },
                 error   : function(e) {
-                    console.log(e);
+                    console.log(e.responseText);
                 }
             });
             return false;

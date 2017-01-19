@@ -26,18 +26,26 @@ class Art_model extends CI_Model{
 	public function get_limit()
 	{
 		$this->db->select('*');
-		$this->db->where('keterampilan >', '5');
-		$this->db->order_by('keterampilan', 'DESC');
+		$this->db->where('pengalaman >=', '3');
+		$this->db->order_by('pengalaman', 'DESC');
 		$this->db->limit(4);
 		$query = $this->db->get($this->table);
+		// print_r($query->result());
+		// exit;
 		return $query->result();
 	}
 
+	function limit(){
+		
+		$data = $this->db->query('SELECT * FROM art ORDER BY id_art ASC LIMIT 8');
+		return $data->result();
+	}
+
 	function get_all(){
-		$query = $this->db->get($this->table);
-		$this->rows = $query->num_rows(); 
+		$query = $this->db->get($this->table); 
 		return $query->result();
 	}
+
 
 	public function get($cond = array())
 	{

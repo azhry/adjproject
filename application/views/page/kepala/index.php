@@ -5,7 +5,7 @@
 			Selamat Datang di Portal Kepala Yayasan Silahkan Pilih Apa yang akan Anda Lakukan
 		</p>
 	</div>
-	<!-- <div class="row well">
+	<div class="row well">
 		<div class="col-md-12">
 			<h3 class="title"><span>Detail Pemesanan ART Yayasan</span></h3>
 			<div id="gp">
@@ -15,21 +15,17 @@
       			Morris.Bar({
 				  element: 'gp',
 				  data: [
-				    { y: '2006', a: 100 },
-				    { y: '2007', a: 75},
-				    { y: '2008', a: 50},
-				    { y: '2009', a: 75},
-				    { y: '2010', a: 50,},
-				    { y: '2011', a: 75},
-				    { y: '2012', a: 100}
+				   <?php foreach ($grafik as $data): ?>
+				    { y: '<?= $data->bulan ?>', a: <?= $data->jumlah ?> },
+				   <?php endforeach; ?>
 				  ],
 				  xkey: 'y',
 				  ykeys: ['a'],
-				  labels: ['Series A']
+				  labels: ['Jumlah Order']
 				});	
       		</script>
 		</div>	
-	</div> -->
+	</div>
 </div>
 
   </body>

@@ -21,6 +21,13 @@ class Laporan_model extends CI_Model{
 		$query = $this->db->get($this->table);
 		return $query->result();
 	}
+
+	function grafik(){
+		$this->db->select('COUNT(*) as jumlah , MONTHNAME(waktu_laporan) as bulan');
+		$this->db->group_by('MONTH(waktu_laporan)');
+		$query = $this->db->get($this->table);
+		return $query->result();
+	}
 	function get_data_byId_laporan($id_laporan){
 		$this->db->where($this->key, $id_laporan); 
 		$query = $this->db->get($this->table);
@@ -50,6 +57,11 @@ class Laporan_model extends CI_Model{
 		return $id_laporan;
 	}
 
+	public function update_laporan($cond, $data)
+	{
+		$this->db->where('id_art',$cond);
+		return $this->db->update($this->table, $data);	
+	}
 
 	function insert($data){
 		return $this->db->insert($this->table, $data); 
